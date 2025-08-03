@@ -8,7 +8,11 @@ import io.cucumber.junit.CucumberOptions;
 @CucumberOptions(
         features = "src/test/resources/ui",
         glue = {"ui.stepdefinitions"},
-        plugin = {"pretty", "html:target/web-report.html"},
+        plugin = {
+                "pretty",
+                "html:target/cucumber-report.html",
+                "json:target/cucumber-report.json"
+        },
         tags = "@web"
 )
 public class WebTestRunner {}
