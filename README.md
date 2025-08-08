@@ -19,18 +19,20 @@ This is the final project for QA Engineering, combining **Web UI testing** for [
 - Hamcrest Matchers
 
 ## Test Descriptions
-### Web UI Test Scenario:
-Automated flow for a complete purchase at saucedemo.com
-1. User logs in with valid credentials
-2. Adds one item to the cart
-3. Goes to cart and proceeds to checkout
-4. Fills in information and completes purchase
-5. Validates success message
+### Web UI Test Scenarios:
+1. End to End test
+2. Login with invalid credentials
+3. Login with empty credentials
+4. Cart badge increases when adding an item
+5. Logout from menu
 
 ### API Test Scenarios:
 Using dummyapi.io to:
-- fetch all user data
-- fetch full data from known user ID
+1. fetch all user data
+2. fetch full data from known user ID
+3. Fetch user by invalid ID format
+4. Fetch user by non-existent valid ID
+5. Fetch users with limit parameter set to 0
 
 ## How To Run Test Locally
 ### Run Web UI Tests:
