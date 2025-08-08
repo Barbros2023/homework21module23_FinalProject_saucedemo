@@ -36,4 +36,10 @@ public class APIsteps {
     public void the_response_should_contain_the_id(String expectedId) {
         response.then().body("id", equalTo(expectedId));
     }
+
+    @Then("the response should contain an empty data list")
+    public void the_response_should_contain_an_empty_data_list() {
+        response.then().body("data.size()", equalTo(5));
+    }
+
 }

@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import ui.pages.*;
 import ui.utilities.DriverFactory;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class WebSteps {
 
@@ -17,6 +17,8 @@ public class WebSteps {
     CheckoutInfoPage checkoutInfoPage = new CheckoutInfoPage(driver);
     CheckoutOverviewPage overviewPage = new CheckoutOverviewPage(driver);
     CheckoutCompletePage completePage = new CheckoutCompletePage(driver);
+
+    // -------------------- Existing Steps --------------------
 
     @Given("I open the SauceDemo login page")
     public void openLoginPage() {
@@ -58,6 +60,48 @@ public class WebSteps {
         String actualMessage = completePage.getConfirmationMessage();
         assertEquals(expectedMessage, actualMessage);
     }
+
+    // -------------------- New Steps for Invalid Login Scenario --------------------
+
+    @Then("I should see an error message displayed")
+    public void errorMessageShouldBeVisible() {
+        assertTrue("Expected error message to be displayed", loginPage.isErrorMessageDisplayed());
+    }
+
+    @Then("I should see the error message {string}")
+    public void verifyErrorMessageText(String expectedMessage) {
+        String actualMessage = loginPage.getErrorMessageText();
+        assertEquals(expectedMessage, actualMessage);
+    }
+
+    // -------------------- New Steps for Empty Credential Scenario --------------------
+
+    @When("the user logs in with empty username and password")
+    public void loginWithEmptyCredentials() {
+        loginPage.login("", "");
+    }
+
+    // -------------------- New Steps for Cart Badge Update --------------------
+
+    @Then("the cart badge should show {string}")
+    public void verifyCartBadge(String expectedCount) {
+        String actualCount = inventoryPage.getCartBadgeCount();
+        assertEquals(expectedCount, actualCount);
+    }
+
+    // -------------------- New Steps for Cart Badge Update --------------------
+
+    @When("I log out from the side menu")
+    public void logoutFromMenu() {
+        inventoryPage.logout();
+    }
+
+    @Then("I should be redirected to the login page")
+    public void redirectedToLogin() {
+        assertTrue("Expected to be back on login page", loginPage.isLoginPageVisible());
+    }
+
+    // -------------------- Cleanup --------------------
 
     @After
     public void tearDown() {

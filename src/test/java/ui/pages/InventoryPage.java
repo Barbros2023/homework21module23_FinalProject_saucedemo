@@ -27,4 +27,18 @@ public class InventoryPage {
     public void goToCart() {
         wait.until(ExpectedConditions.elementToBeClickable(cartButton)).click();
     }
+
+    public String getCartBadgeCount() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("shopping_cart_badge")));
+        return driver.findElement(By.className("shopping_cart_badge")).getText();
+    }
+
+    public void logout() {
+        By menuButton = By.id("react-burger-menu-btn");
+        By logoutLink = By.id("logout_sidebar_link");
+
+        wait.until(ExpectedConditions.elementToBeClickable(menuButton)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(logoutLink)).click();
+    }
+
 }
