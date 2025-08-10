@@ -35,12 +35,14 @@ jobs:
         run: ./gradlew webTests
 
       - name: Upload Web UI test report
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: webTests-report
           path: build/reports/tests/webTests
 
       - name: Upload API test report
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: apiTests-report
